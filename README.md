@@ -1,2 +1,2 @@
 # MathSets
-Mathematical sets for python.
+Set Theory style sets module for python.
