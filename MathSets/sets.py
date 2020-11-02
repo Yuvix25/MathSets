@@ -1,10 +1,9 @@
 from sympy.solvers import solve
 from sympy import Symbol
-import boolean
 
 
 class Set:
-    def set_in(self, set):
+    def contains_subset(self, set):
         for item in set:
             if not (item in self):
                 return False
@@ -119,11 +118,12 @@ if __name__ == "__main__": #example
         import MathSets.default_sets as default_sets
     except:
         import default_sets
-    test_set0 = SeperationSet(default_sets.N, "x % 2 == 1") #currently can only use x or item as the variable.
-    test_set1 = ReplacementSet("x**2", default_sets.N) #currently can only use x or item as the variable.
+    test_set0 = SeperationSet(default_sets.N, "x % 2 == 1")  # currently can only use x or item as the variable.
+    test_set1 = ReplacementSet("x**2", default_sets.N)  # currently can only use x or item as the variable.
     test_set2 = SeperationSet(default_sets.N, "x ** 2 == x")
     test_set3 = ReplacementSet("x*2", default_sets.N)
     print(4 in test_set1 + test_set3)
+
     # Union: (set1 | set2), (set1 + set2)
     # Difference: set1 - set2
     # Symetric Difference: set1 ^ set2
