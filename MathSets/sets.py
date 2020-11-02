@@ -28,6 +28,9 @@ class Set:
     def __and__(self, other):
         return IntersectionSet(self, other)
 
+    def __contains__(self, item):
+        return False
+
 
 class UnionSet(Set):
     def __init__(self, set1, set2):
@@ -81,13 +84,13 @@ class InvertedSet(Set):
 
 
 
-class SeperationSet(Set):
+class SeperationSet(Set): # like: {n∈ℕ|n>5}
     def __init__(self, mother_set, condition):
         self.mother_set = mother_set
         self.condition = condition
 
     def __contains__(self, item):
-        x = item
+        x = item; x #to remove the not used dashes
         if item in self.mother_set and eval(self.condition):
             return True
         return False
@@ -95,7 +98,7 @@ class SeperationSet(Set):
     
 
 
-class ReplacementSet(Set):
+class ReplacementSet(Set): # like: {n*2|n∈ℕ}
     def __init__(self, func, mother_set):
         self.mother_set = mother_set
         self.func = func
@@ -111,13 +114,18 @@ class ReplacementSet(Set):
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #example
     try:
         import MathSets.default_sets as default_sets
     except:
         import default_sets
-    test_set0 = SeperationSet(default_sets.N, "x % 2 == 1")
-    test_set1 = ReplacementSet("x**2", default_sets.N)
+    test_set0 = SeperationSet(default_sets.N, "x % 2 == 1") #currently can only use x or item as the variable.
+    test_set1 = ReplacementSet("x**2", default_sets.N) #currently can only use x or item as the variable.
     test_set2 = SeperationSet(default_sets.N, "x ** 2 == x")
     test_set3 = ReplacementSet("x*2", default_sets.N)
-    print(4 in test_set1+test_set3)
+    print(4 in test_set1 + test_set3)
+    # Union: (set1 | set2), (set1 + set2)
+    # Difference: set1 - set2
+    # Symetric Difference: set1 ^ set2
+    # Intersection: set1 & set2
+    # Invert (all that not belongs to): ~set
