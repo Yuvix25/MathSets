@@ -1,20 +1,11 @@
 try:
-    import sets
+    from sets import Set
 except:
-    import MathSets.sets as sets
+    from MathSets.sets import Set
 
-class DefaultSet(sets.Set):
+class DefaultSet(Set):
     def __init__(self, condition):
         self.condition = condition
-
-    def __invert__(self):
-        return DefaultSet(f"not ({self.condition})")
-
-    def __add__(self, other):
-        return DefaultSet(f"({self.condition}) or ({other.condition})")
-
-    def __sub__(self, other):
-        return DefaultSet(f"({self.condition}) and not ({other.condition})")
 
     def __contains__(self, item):
         x = item
