@@ -26,7 +26,7 @@ class Set:
         return DifferenceSet(self, other)
 
     def __xor__(self, other):
-        return SymetricDifferenceSet(self, other)
+        return SymmetricDifferenceSet(self, other)
 
     def __and__(self, other):
         return IntersectionSet(self, other)
@@ -45,6 +45,9 @@ class UnionSet(Set):
             return True
         return False
 
+    def __str__(self):
+        return "{x | x ∈ " + str(self.set1) + " ∨ x ∈ " + str(self.set2) + "}"
+
 class IntersectionSet(Set):
     def __init__(self, set1, set2):
         self.set1 = set1
@@ -54,6 +57,9 @@ class IntersectionSet(Set):
         if item in self.set1 and item in self.set2:
             return True
         return False
+
+    def __str__(self):
+        return "{x | x ∈ " + str(self.set1) + " ∧ x ∈ " + str(self.set2) + "}"
 
 class DifferenceSet(Set):
     def __init__(self, set1, set2):
@@ -65,7 +71,10 @@ class DifferenceSet(Set):
             return True
         return False
 
-class SymetricDifferenceSet(Set):
+    def __str__(self):
+        return "{x | x ∈ " + str(self.set1) + " ∧ x ∉ " + str(self.set2) + "}"
+
+class SymmetricDifferenceSet(Set):
     def __init__(self, set1, set2):
         self.set1 = set1
         self.set2 = set2
@@ -75,6 +84,9 @@ class SymetricDifferenceSet(Set):
             return True
         return False
 
+    def __str__(self):
+        return "{x | x ∈ (" + str(self.set1) + " \\ " + str(self.set2) + ") ⋃ (" + str(self.set2) + " \\ " + str(self.set1) + ")}"
+
 class InvertedSet(Set):
     def __init__(self, set):
         self.set = set
@@ -83,6 +95,9 @@ class InvertedSet(Set):
         if not item in self.set:
             return True
         return False
+
+    def __str__(self):
+        return "{x | x ∉ " + str(self.set) + "}"
 
 
 
@@ -129,11 +144,11 @@ if __name__ == "__main__": #example
     test_set2 = SeperationSet(default_sets.N, "x ** 2 == x")
     test_set3 = ReplacementSet("x*2", default_sets.N)
     print(4 in test_set1 + test_set3)
-    print(str(test_set0))
-    print(str(test_set1))
+    print(str(test_set0 ^ test_set2))
+
 
     # Union: (set1 | set2), (set1 + set2)
     # Difference: set1 - set2
-    # Symetric Difference: set1 ^ set2
+    # Symmetric Difference: set1 ^ set2
     # Intersection: set1 & set2
     # Invert (all that not belongs to): ~set

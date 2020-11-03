@@ -9,7 +9,7 @@ class DefaultSet(Set):
         self.string_form = string_form
 
     def __contains__(self, item):
-        x = item
+        x = item; x #to remove the not used dashes
         if eval(self.condition):
             return True
         return False
