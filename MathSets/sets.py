@@ -98,6 +98,9 @@ class SeperationSet(Set): # like: {n∈ℕ|n>5}
             return True
         return False
 
+    def __str__(self):
+        return "{x ∈ " + str(self.mother_set) + " | " + self.condition + "}"
+
     
 
 
@@ -114,16 +117,20 @@ class ReplacementSet(Set): # like: {n*2|n∈ℕ}
                 return True
         return False
 
+    def __str__(self):
+        return "{" + self.func + " | x ∈ " + str(self.mother_set) + "}"
+
 
 
 
 if __name__ == "__main__": #example
-    test_set0 = SeperationSet(default_sets.N, "x % 2 == 1")  # currently can only use x or item as the variable.
-    test_set1 = ReplacementSet("x**2", default_sets.N)  # currently can only use x or item as the variable.
+    test_set0 = SeperationSet(default_sets.N, "x % 2 == 1")  # currently can only use x as the variable.
+    test_set1 = ReplacementSet("x**2", default_sets.N)  # currently can only use x as the variable.
     test_set2 = SeperationSet(default_sets.N, "x ** 2 == x")
     test_set3 = ReplacementSet("x*2", default_sets.N)
     print(4 in test_set1 + test_set3)
-
+    print(str(test_set0))
+    print(str(test_set1))
 
     # Union: (set1 | set2), (set1 + set2)
     # Difference: set1 - set2
