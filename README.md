@@ -6,4 +6,8 @@ Set Theory style sets module for python.
 - [SymPy](https://pypi.org/project/sympy/) (installed automatically)
 
 ## Instsallation
-Use `$ pip install mathsets` (not yet implemented)
+```sh
+$ git clone https://github.com/Yuvix25/MathSets.git
+$ cd MathSets
+$ python setup.py install
+```
